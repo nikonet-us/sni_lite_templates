@@ -1,6 +1,6 @@
-hostname {{ device.name }}
+hostname {{ hostname }}
 !
-{% for interface in device.interfaces %}
+{% for interface in interfaces %}
 interface {{ interface.name }}
   description "{{ interface.role.name }}"
   {% if interface.lag %}
