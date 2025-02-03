@@ -2,6 +2,7 @@ hostname {{ hostname }}
 !
 {% for interface in interfaces %}
 interface {{ interface.name }}
+  mtu {{ interface.mtu }}
 {% if interface.lag -%}
   bundle id {{ interface.lag.name.split('Bundle-Ether')[-1] }} mode active
 {% endif -%}
