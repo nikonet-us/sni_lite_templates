@@ -2,17 +2,17 @@ hostname {{ hostname }}
 !
 {% for interface in interfaces -%}
 interface {{ interface.name }}
-  mtu {{ interface.mtu }}
-  {% if interface.lag -%}
-  bundle id {{ interface.lag.name.split('Bundle-Ether')[-1] }} mode active
-  {% endif -%}
-  {% if interface.ip_addresses -%}
-  ipv4 address {{ interface.ip_addresses[0].address }}
-  {% endif -%}
-  {% if interface.enabled -%}
-  no shutdown
-  {% else -%}
-  shutdown
-  {% endif %}
+mtu {{ interface.mtu }}
+{% if interface.lag -%}
+bundle id {{ interface.lag.name.split('Bundle-Ether')[-1] }} mode active
+{% endif -%}
+{% if interface.ip_addresses -%}
+ipv4 address {{ interface.ip_addresses[0].address }}
+{% endif -%}
+{% if interface.enabled -%}
+no shutdown
+{% else -%}
+shutdown
+{% endif %}
 !
 {% endfor %}
